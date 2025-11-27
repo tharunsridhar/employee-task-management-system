@@ -80,37 +80,29 @@ Note: Make sure to update API_URL in script.js if needed.
 ## Project Structure
 
 employee-task-manager/
-│
-├── README.md                      (This file - Main documentation)
-│
-├── backend/                       (Backend API)
-│   ├── app/
-│   │   ├── __init__.py
-│   │   ├── main.py               (FastAPI app entry point)
-│   │   ├── database.py           (Database configuration)
-│   │   ├── models.py             (SQLAlchemy database models)
-│   │   ├── schemas.py            (Pydantic validation schemas)
-│   │   │
-│   │   ├── crud/                 (CRUD operations)
-│   │   │   ├── __init__.py
-│   │   │   ├── employees.py     (Employee operations)
-│   │   │   └── tasks.py         (Task operations)
-│   │   │
-│   │   └── routers/              (API endpoints)
-│   │       ├── __init__.py
-│   │       ├── employees.py     (Employee routes)
-│   │       └── tasks.py         (Task routes)
-│   │
-│   ├── app.db                    (SQLite database - auto-created)
-│   ├── requirements.txt          (Python dependencies)
-│   └── README.md                 (Backend documentation)
-│
-└── frontend/                      (Frontend UI)
-    ├── index.html                (Main HTML structure)
-    ├── styles.css                (All CSS styling)
-    ├── script.js                 (JavaScript logic)
-    └── README.md                 (Frontend documentation)
-
+├── README.md
+├── backend/
+│ ├── app/
+│ │ ├── init.py
+│ │ ├── main.py
+│ │ ├── database.py
+│ │ ├── models.py
+│ │ ├── schemas.py
+│ │ ├── crud/
+│ │ │ ├── init.py
+│ │ │ ├── employees.py
+│ │ │ └── tasks.py
+│ │ └── routers/
+│ │ ├── init.py
+│ │ ├── employees.py
+│ │ └── tasks.py
+│ ├── requirements.txt
+│ └── README.md
+└── frontend/
+├── index.html
+├── styles.css
+├── script.js
+└── README.md
 ---
 
 ## API Endpoints
