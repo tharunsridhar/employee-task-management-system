@@ -1,4 +1,3 @@
-%%writefile /content/employee-task-manager/README.md
 # Employee Task Management System - Full Stack
 
 A complete full-stack web application for managing employees and tasks, built with FastAPI backend and pure HTML/CSS/JS frontend.
@@ -435,8 +434,6 @@ Tech Stack: FastAPI, SQLAlchemy, HTML5, CSS3, Vanilla JavaScript
 ---
 
 ## License
-
-Open source - Free for educational purposes
 
 ---
 
