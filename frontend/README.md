@@ -39,9 +39,13 @@ Then open: http://localhost:8080
 ## File Structure
 
 frontend/
+
 ├── index.html          # Main HTML structure
+
 ├── styles.css          # All styling and animations
+
 ├── script.js           # Frontend logic and API calls
+
 └── README.md           # This file
 
 Total Files: 3
