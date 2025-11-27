@@ -45,22 +45,39 @@ FastAPI-based REST API for managing employees and tasks with SQLAlchemy ORM and 
 ## Project Structure
 
 backend/
+
 ├── app/
+
 │   ├── __init__.py
+
 │   ├── main.py              # FastAPI app & CORS config
+
 │   ├── database.py          # SQLAlchemy setup
+
 │   ├── models.py            # Database models (Employee, Task)
+
 │   ├── schemas.py           # Pydantic validation schemas
+
 │   ├── crud/
+
 │   │   ├── __init__.py
+
 │   │   ├── employees.py     # Employee CRUD operations
+
 │   │   └── tasks.py         # Task CRUD operations
+
 │   └── routers/
+
 │       ├── __init__.py
+
 │       ├── employees.py     # Employee endpoints
+
 │       └── tasks.py         # Task endpoints
+
 ├── app.db                   # SQLite database (auto-generated)
+
 ├── requirements.txt         # Python dependencies
+
 └── README.md               # This file
 
 ---
