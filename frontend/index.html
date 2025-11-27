@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Task Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏢 Employee Task Management System</h1>
+            <p>Manage employees and assign tasks efficiently</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('employees')">👥 Employees</button>
+            <button class="tab-btn" onclick="showTab('tasks')">📋 Tasks</button>
+        </div>
+
+        <!-- Employees Section -->
+        <div id="employees-tab" class="tab-content active">
+            <div class="form-section">
+                <h2>Add New Employee</h2>
+                <form id="employee-form">
+                    <input type="text" id="emp-name" placeholder="Full Name" required>
+                    <input type="email" id="emp-email" placeholder="Email Address" required>
+                    <input type="text" id="emp-dept" placeholder="Department" required>
+                    <input type="text" id="emp-position" placeholder="Position" required>
+                    <button type="submit">➕ Add Employee</button>
+                </form>
+            </div>
+            <div class="list-section">
+                <h2>Employee List</h2>
+                <div id="employees-list" class="card-grid"></div>
+            </div>
+        </div>
+
+        <!-- Tasks Section -->
+        <div id="tasks-tab" class="tab-content">
+            <div class="form-section">
+                <h2>Add New Task</h2>
+                <form id="task-form">
+                    <input type="text" id="task-title" placeholder="Task Title" required>
+                    <textarea id="task-desc" placeholder="Task Description" rows="3"></textarea>
+                    <select id="task-employee" required>
+                        <option value="">Select Employee</option>
+                    </select>
+                    <select id="task-priority">
+                        <option value="low">🟢 Low Priority</option>
+                        <option value="medium" selected>🟡 Medium Priority</option>
+                        <option value="high">🔴 High Priority</option>
+                    </select>
+                    <select id="task-status">
+                        <option value="pending" selected>⏳ Pending</option>
+                        <option value="in-progress">🔄 In Progress</option>
+                        <option value="completed">✅ Completed</option>
+                    </select>
+                    <button type="submit">➕ Add Task</button>
+                </form>
+            </div>
+            <div class="list-section">
+                <h2>Task List</h2>
+                <div id="tasks-list" class="card-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
