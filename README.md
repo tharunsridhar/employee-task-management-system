@@ -80,29 +80,53 @@ Note: Make sure to update API_URL in script.js if needed.
 ## Project Structure
 
 employee-task-manager/
+
 ├── README.md
+
 ├── backend/
+
 │ ├── app/
+
 │ │ ├── init.py
+
 │ │ ├── main.py
+
 │ │ ├── database.py
+
 │ │ ├── models.py
+
 │ │ ├── schemas.py
+
 │ │ ├── crud/
+
 │ │ │ ├── init.py
+
 │ │ │ ├── employees.py
+
 │ │ │ └── tasks.py
+
 │ │ └── routers/
+
 │ │ ├── init.py
+
 │ │ ├── employees.py
+
 │ │ └── tasks.py
+
 │ ├── requirements.txt
+
 │ └── README.md
+
 └── frontend/
+
 ├── index.html
+
 ├── styles.css
+
 ├── script.js
+
 └── README.md
+
 ---
 
 ## API Endpoints
