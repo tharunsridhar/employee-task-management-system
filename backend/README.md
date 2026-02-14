@@ -273,5 +273,3 @@ It is designed to showcase backend system design capability rather than just UI 
 ## 👤 Author
 
 Tharun Sridhar  
-Computer Science – Information Security  
-Backend & Systems Engineering Focus
