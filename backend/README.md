@@ -1,275 +1,138 @@
-# 🏢 Employee Task Management System
+# 🧩 Employee & Task Management API (Backend)
 
-A full-stack RESTful web application for managing employees and their assigned tasks.
-
-Built using FastAPI (backend), SQLAlchemy ORM, SQLite database, and a responsive Vanilla JavaScript frontend.
+RESTful API built using FastAPI and SQLAlchemy for managing employees and tasks with relational database modeling.
 
 ---
 
 ## 🚀 Overview
 
-This project demonstrates a modular, layered full-stack architecture:
+This backend service provides:
 
-- Backend: FastAPI + SQLAlchemy
-- Database: SQLite (easily switchable to PostgreSQL)
-- Frontend: HTML5 + CSS3 + Vanilla JavaScript
-- Architecture: Router-based REST API + CRUD layer separation
-- Relationship Model: One-to-Many (Employee → Tasks)
-
-Designed to showcase backend engineering fundamentals, relational modeling, API design, and frontend integration.
-
----
-
-## 🧠 System Architecture
-
-Client (Browser)
-        ↓
-Vanilla JS (Fetch API)
-        ↓
-FastAPI REST Endpoints
-        ↓
-CRUD Layer
-        ↓
-SQLAlchemy ORM
-        ↓
-SQLite Database
+- Employee CRUD operations
+- Task CRUD operations
+- One-to-Many relationship (Employee → Tasks)
+- Pydantic validation
+- SQLAlchemy ORM
+- Auto-generated Swagger documentation
+- CORS configuration for frontend integration
 
 ---
 
-## 📂 Project Structure
+## 🏗 Architecture
+
+FastAPI Router Layer  
+        ↓  
+CRUD Layer  
+        ↓  
+SQLAlchemy ORM  
+        ↓  
+SQLite Database  
+
+Layered separation improves maintainability and scalability.
+
+---
+
+## 🛠 Tech Stack
+
+- FastAPI
+- Uvicorn
+- SQLAlchemy 2.x
+- Pydantic v2
+- SQLite
+
+Dependencies:
+:contentReference[oaicite:0]{index=0}  
+
+---
+
+## 📂 Structure
 
 ```
-employee-task-management-system/
-
-├── backend/
-│   ├── app/
-│   │   ├── main.py              # FastAPI app config
-│   │   ├── database.py          # DB engine & session
-│   │   ├── models.py            # SQLAlchemy models
-│   │   ├── schemas.py           # Pydantic validation
-│   │   ├── crud/
-│   │   │   ├── employees.py
-│   │   │   └── tasks.py
-│   │   └── routers/
-│   │       ├── employees.py
-│   │       └── tasks.py
-│   └── requirements.txt
-│
-├── frontend/
-│   ├── index.html
-│   ├── styles.css
-│   └── script.js
-│
+backend/
+├── app/
+│   ├── main.py
+│   ├── database.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── crud/
+│   │   ├── employees.py
+│   │   └── tasks.py
+│   └── routers/
+│       ├── employees.py
+│       └── tasks.py
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## 🛠 Technology Stack
+## 🧱 Database Models
 
-### Backend
-- FastAPI
-- Uvicorn (ASGI server)
-- SQLAlchemy 2.x
-- Pydantic v2
-- SQLite
+Relational mapping defined in:
+:contentReference[oaicite:1]{index=1}  
 
-Dependencies defined in:
-```
-requirements.txt
-```
-:contentReference[oaicite:9]{index=9}  
-
-### Frontend
-- HTML5
-- CSS3
-- Vanilla JavaScript (ES6+)
-- Fetch API
+- One employee can have multiple tasks
+- Foreign key relationship enforced
 
 ---
 
-## 🧱 Database Design
+## 🔌 API Endpoints
 
-### Employee Table
+### Employees
 
-- id (Primary Key)
-- name
-- email (Unique)
-- department
-- position
-- created_at
+POST   /employees/  
+GET    /employees/  
+GET    /employees/{id}  
+PUT    /employees/{id}  
+DELETE /employees/{id}  
 
-### Task Table
+### Tasks
 
-- id (Primary Key)
-- title
-- description
-- status (pending / in-progress / completed)
-- priority (low / medium / high)
-- employee_id (Foreign Key)
-- created_at
+POST   /tasks/  
+GET    /tasks/  
+GET    /tasks/{id}  
+PUT    /tasks/{id}  
+DELETE /tasks/{id}  
 
-Relational mapping defined in SQLAlchemy models :contentReference[oaicite:10]{index=10}  
-
-One employee → Multiple tasks.
+Task router implementation:
+:contentReference[oaicite:2]{index=2}  
 
 ---
 
-## 🔌 REST API Endpoints
+## ▶️ Run Backend
 
-### Employee Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST   | /employees/ | Create employee |
-| GET    | /employees/ | Get all employees |
-| GET    | /employees/{id} | Get employee by ID |
-| PUT    | /employees/{id} | Update employee |
-| DELETE | /employees/{id} | Delete employee |
-
-Router implementation :contentReference[oaicite:11]{index=11}  
-
----
-
-### Task Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST   | /tasks/ | Create task |
-| GET    | /tasks/ | Get all tasks |
-| GET    | /tasks/{id} | Get task by ID |
-| PUT    | /tasks/{id} | Update task |
-| DELETE | /tasks/{id} | Delete task |
-
-Router implementation :contentReference[oaicite:12]{index=12}  
-
----
-
-## 🧪 Backend Design Principles
-
-### Layered Separation
-
-- Router Layer → Handles HTTP logic
-- CRUD Layer → Business logic abstraction :contentReference[oaicite:13]{index=13}  
-- Models → ORM mapping :contentReference[oaicite:14]{index=14}  
-- Schemas → Validation layer :contentReference[oaicite:15]{index=15}  
-- Database session management :contentReference[oaicite:16]{index=16}  
-
-This separation improves maintainability and scalability.
-
----
-
-## 🌐 Frontend Functionality
-
-Implemented using pure JavaScript without frameworks.
-
-- Dynamic tab switching
-- Fetch API integration
-- Real-time DOM updates
-- Toast notifications
-- Form validation
-- Status & priority badges
-- Delete confirmation dialogs
-
-API communication handled in:
-:contentReference[oaicite:17]{index=17}  
-
----
-
-## ⚙️ How to Run
-
-### Backend Setup
-
-```
+```bash
 cd backend
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Backend starts at:
-
+API Base URL:
 ```
 http://localhost:8000
 ```
 
-Swagger UI:
-
+Swagger Docs:
 ```
 http://localhost:8000/docs
 ```
 
-FastAPI initialization defined in:
-:contentReference[oaicite:18]{index=18}  
+App initialization:
+:contentReference[oaicite:3]{index=3}  
 
 ---
 
-### Frontend Setup
+## 🔐 Production Improvements
 
-Option 1 (Serve separately):
-
-```
-cd frontend
-python -m http.server 8080
-```
-
-Open:
-
-```
-http://localhost:8080
-```
-
-Option 2:
-
-Open `index.html` directly in browser.
-
----
-
-## 🔐 Security Considerations
-
-Current state: Development-ready
-
-Production improvements recommended:
-
-- JWT Authentication
+- JWT authentication
 - Role-based access control
-- Environment variable configs
 - PostgreSQL migration
+- Environment variables
 - HTTPS
 - Rate limiting
-- Logging & monitoring
-
----
-
-## 🎯 Engineering Highlights
-
-This project demonstrates:
-
-- RESTful API design
-- Proper ORM modeling
-- Relational database concepts
-- CRUD abstraction
-- Dependency injection (FastAPI Depends)
-- CORS configuration
-- Frontend-backend integration
-- Clean layered architecture
-- No-framework frontend engineering
-
-It is designed to showcase backend system design capability rather than just UI development.
-
----
-
-## 🚀 Future Enhancements
-
-- Authentication (JWT)
-- Role-based access control
-- Task filtering & search
-- Pagination
-- Dashboard analytics
-- Dockerization
-- Cloud deployment (AWS/GCP)
 
 ---
 
 ## 👤 Author
 
-Tharun Sridhar  
+Tharun Sridhar
