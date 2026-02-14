@@ -1,272 +1,277 @@
-# Employee Task Management - Backend API
+# 🏢 Employee Task Management System
 
-FastAPI-based REST API for managing employees and tasks with SQLAlchemy ORM and SQLite database.
+A full-stack RESTful web application for managing employees and their assigned tasks.
 
----
-
-## Features
-
-- RESTful API with FastAPI
-- Database ORM using SQLAlchemy
-- Data Validation with Pydantic schemas
-- Auto Documentation (Swagger UI & ReDoc)
-- CORS Enabled for frontend integration
-- SQLite Database (easy to switch to PostgreSQL)
-- Modular Architecture (CRUD, Routers, Models)
+Built using FastAPI (backend), SQLAlchemy ORM, SQLite database, and a responsive Vanilla JavaScript frontend.
 
 ---
 
-## Quick Start
+## 🚀 Overview
 
-### Prerequisites
-- Python 3.8 or higher
-- pip
+This project demonstrates a modular, layered full-stack architecture:
 
-### Installation
+- Backend: FastAPI + SQLAlchemy
+- Database: SQLite (easily switchable to PostgreSQL)
+- Frontend: HTML5 + CSS3 + Vanilla JavaScript
+- Architecture: Router-based REST API + CRUD layer separation
+- Relationship Model: One-to-Many (Employee → Tasks)
 
-1. Navigate to backend folder
-   cd backend
-
-2. Install dependencies
-   pip install -r requirements.txt
-
-3. Run the server
-   uvicorn app.main:app --reload
-
-4. Server starts at:
-   http://localhost:8000
-
-5. API Documentation:
-   - Swagger UI: http://localhost:8000/docs
-   - ReDoc: http://localhost:8000/redoc
+Designed to showcase backend engineering fundamentals, relational modeling, API design, and frontend integration.
 
 ---
 
-## Project Structure
+## 🧠 System Architecture
 
-backend/
-
-├── app/
-
-│   ├── __init__.py
-
-│   ├── main.py              # FastAPI app & CORS config
-
-│   ├── database.py          # SQLAlchemy setup
-
-│   ├── models.py            # Database models (Employee, Task)
-
-│   ├── schemas.py           # Pydantic validation schemas
-
-│   ├── crud/
-
-│   │   ├── __init__.py
-
-│   │   ├── employees.py     # Employee CRUD operations
-
-│   │   └── tasks.py         # Task CRUD operations
-
-│   └── routers/
-
-│       ├── __init__.py
-
-│       ├── employees.py     # Employee endpoints
-
-│       └── tasks.py         # Task endpoints
-
-├── app.db                   # SQLite database (auto-generated)
-
-├── requirements.txt         # Python dependencies
-
-└── README.md               # This file
+Client (Browser)
+        ↓
+Vanilla JS (Fetch API)
+        ↓
+FastAPI REST Endpoints
+        ↓
+CRUD Layer
+        ↓
+SQLAlchemy ORM
+        ↓
+SQLite Database
 
 ---
 
-## API Endpoints
+## 📂 Project Structure
+
+```
+employee-task-management-system/
+
+├── backend/
+│   ├── app/
+│   │   ├── main.py              # FastAPI app config
+│   │   ├── database.py          # DB engine & session
+│   │   ├── models.py            # SQLAlchemy models
+│   │   ├── schemas.py           # Pydantic validation
+│   │   ├── crud/
+│   │   │   ├── employees.py
+│   │   │   └── tasks.py
+│   │   └── routers/
+│   │       ├── employees.py
+│   │       └── tasks.py
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+│
+└── README.md
+```
+
+---
+
+## 🛠 Technology Stack
+
+### Backend
+- FastAPI
+- Uvicorn (ASGI server)
+- SQLAlchemy 2.x
+- Pydantic v2
+- SQLite
+
+Dependencies defined in:
+```
+requirements.txt
+```
+:contentReference[oaicite:9]{index=9}  
+
+### Frontend
+- HTML5
+- CSS3
+- Vanilla JavaScript (ES6+)
+- Fetch API
+
+---
+
+## 🧱 Database Design
+
+### Employee Table
+
+- id (Primary Key)
+- name
+- email (Unique)
+- department
+- position
+- created_at
+
+### Task Table
+
+- id (Primary Key)
+- title
+- description
+- status (pending / in-progress / completed)
+- priority (low / medium / high)
+- employee_id (Foreign Key)
+- created_at
+
+Relational mapping defined in SQLAlchemy models :contentReference[oaicite:10]{index=10}  
+
+One employee → Multiple tasks.
+
+---
+
+## 🔌 REST API Endpoints
 
 ### Employee Endpoints
 
-Method    Endpoint              Description
-POST      /employees/           Create new employee
-GET       /employees/           Get all employees
-GET       /employees/{id}       Get employee by ID
-DELETE    /employees/{id}       Delete employee
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST   | /employees/ | Create employee |
+| GET    | /employees/ | Get all employees |
+| GET    | /employees/{id} | Get employee by ID |
+| PUT    | /employees/{id} | Update employee |
+| DELETE | /employees/{id} | Delete employee |
+
+Router implementation :contentReference[oaicite:11]{index=11}  
+
+---
 
 ### Task Endpoints
 
-Method    Endpoint              Description
-POST      /tasks/               Create new task
-GET       /tasks/               Get all tasks
-GET       /tasks/{id}           Get task by ID
-DELETE    /tasks/{id}           Delete task
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST   | /tasks/ | Create task |
+| GET    | /tasks/ | Get all tasks |
+| GET    | /tasks/{id} | Get task by ID |
+| PUT    | /tasks/{id} | Update task |
+| DELETE | /tasks/{id} | Delete task |
+
+Router implementation :contentReference[oaicite:12]{index=12}  
 
 ---
 
-## Request/Response Examples
+## 🧪 Backend Design Principles
 
-### Create Employee
-POST /employees/
-Content-Type: application/json
+### Layered Separation
 
-{
-  "name": "Tharun Sridhar",
-  "email": "tharun@vit.edu",
-  "department": "Engineering",
-  "position": "Full Stack Developer"
-}
+- Router Layer → Handles HTTP logic
+- CRUD Layer → Business logic abstraction :contentReference[oaicite:13]{index=13}  
+- Models → ORM mapping :contentReference[oaicite:14]{index=14}  
+- Schemas → Validation layer :contentReference[oaicite:15]{index=15}  
+- Database session management :contentReference[oaicite:16]{index=16}  
 
-Response:
-{
-  "id": 1,
-  "name": "Tharun Sridhar",
-  "email": "tharun@vit.edu",
-  "department": "Engineering",
-  "position": "Full Stack Developer",
-  "created_at": "2025-11-27T22:00:00",
-  "tasks": []
-}
-
-### Create Task
-POST /tasks/
-Content-Type: application/json
-
-{
-  "title": "Fix authentication bug",
-  "description": "Update JWT validation",
-  "employee_id": 1,
-  "priority": "high",
-  "status": "pending"
-}
-
-Response:
-{
-  "id": 1,
-  "title": "Fix authentication bug",
-  "description": "Update JWT validation",
-  "employee_id": 1,
-  "priority": "high",
-  "status": "pending",
-  "created_at": "2025-11-27T22:05:00"
-}
+This separation improves maintainability and scalability.
 
 ---
 
-## Database Schema
+## 🌐 Frontend Functionality
 
-### Employee Table
-CREATE TABLE employees (
-    id INTEGER PRIMARY KEY,
-    name VARCHAR NOT NULL,
-    email VARCHAR UNIQUE NOT NULL,
-    department VARCHAR NOT NULL,
-    position VARCHAR NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+Implemented using pure JavaScript without frameworks.
 
-### Task Table
-CREATE TABLE tasks (
-    id INTEGER PRIMARY KEY,
-    title VARCHAR NOT NULL,
-    description VARCHAR,
-    status VARCHAR DEFAULT 'pending',
-    priority VARCHAR DEFAULT 'medium',
-    employee_id INTEGER REFERENCES employees(id),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+- Dynamic tab switching
+- Fetch API integration
+- Real-time DOM updates
+- Toast notifications
+- Form validation
+- Status & priority badges
+- Delete confirmation dialogs
+
+API communication handled in:
+:contentReference[oaicite:17]{index=17}  
 
 ---
 
-## Technology Stack
+## ⚙️ How to Run
 
-- Framework: FastAPI 0.115.0
-- Server: Uvicorn 0.32.0 (ASGI)
-- ORM: SQLAlchemy 2.0.36
-- Validation: Pydantic 2.9.2
-- Database: SQLite (dev) / PostgreSQL (prod)
+### Backend Setup
 
----
-
-## Configuration
-
-### Change Database to PostgreSQL
-
-Edit app/database.py:
-SQLALCHEMY_DATABASE_URL = "postgresql://user:password@localhost/dbname"
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-
-### Change Port
-
-uvicorn app.main:app --host 0.0.0.0 --port 8001
-
-### Enable/Disable CORS
-
-Edit app/main.py:
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
----
-
-## Troubleshooting
-
-### Port already in use
-lsof -i :8000
-kill -9 <PID>
-
-### Database locked error
-rm app.db
+```
+cd backend
+pip install -r requirements.txt
 uvicorn app.main:app --reload
+```
 
-### Module not found errors
-pip install -r requirements.txt --force-reinstall
+Backend starts at:
 
----
+```
+http://localhost:8000
+```
 
-## Testing with curl
+Swagger UI:
 
-# Create employee
-curl -X POST http://localhost:8000/employees/ \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Test User","email":"test@test.com","department":"IT","position":"Dev"}'
+```
+http://localhost:8000/docs
+```
 
-# Get all employees
-curl http://localhost:8000/employees/
-
-# Create task
-curl -X POST http://localhost:8000/tasks/ \
-  -H "Content-Type: application/json" \
-  -d '{"title":"Test Task","description":"Test","employee_id":1,"priority":"high","status":"pending"}'
-
-# Get all tasks
-curl http://localhost:8000/tasks/
+FastAPI initialization defined in:
+:contentReference[oaicite:18]{index=18}  
 
 ---
 
-## Security Notes (Production)
+### Frontend Setup
 
-- Add authentication (JWT/OAuth2)
-- Use environment variables for secrets
-- Switch to PostgreSQL/MySQL
-- Enable HTTPS
-- Add rate limiting
-- Implement input sanitization
-- Add logging and monitoring
+Option 1 (Serve separately):
+
+```
+cd frontend
+python -m http.server 8080
+```
+
+Open:
+
+```
+http://localhost:8080
+```
+
+Option 2:
+
+Open `index.html` directly in browser.
 
 ---
 
-## Developer
+## 🔐 Security Considerations
 
-Name: Tharun Sridhar
-Institution: VIT Vellore
-Specialization: Information Security
-Tech Stack: Python, FastAPI, SQLAlchemy
+Current state: Development-ready
+
+Production improvements recommended:
+
+- JWT Authentication
+- Role-based access control
+- Environment variable configs
+- PostgreSQL migration
+- HTTPS
+- Rate limiting
+- Logging & monitoring
 
 ---
 
-## License
+## 🎯 Engineering Highlights
 
-Open source - Educational purposes
+This project demonstrates:
+
+- RESTful API design
+- Proper ORM modeling
+- Relational database concepts
+- CRUD abstraction
+- Dependency injection (FastAPI Depends)
+- CORS configuration
+- Frontend-backend integration
+- Clean layered architecture
+- No-framework frontend engineering
+
+It is designed to showcase backend system design capability rather than just UI development.
+
+---
+
+## 🚀 Future Enhancements
+
+- Authentication (JWT)
+- Role-based access control
+- Task filtering & search
+- Pagination
+- Dashboard analytics
+- Dockerization
+- Cloud deployment (AWS/GCP)
+
+---
+
+## 👤 Author
+
+Tharun Sridhar  
+Computer Science – Information Security  
+Backend & Systems Engineering Focus
