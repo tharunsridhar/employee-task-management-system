@@ -1,5 +1,9 @@
 # 🏢 Employee Task Management System
 
+![FastAPI](https://img.shields.io/badge/FastAPI-App-009688?style=flat-square&logo=fastapi&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-D71F00?style=flat-square)
+![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=flat-square&logo=sqlite&logoColor=white)
+
 Full-stack web application for managing employees and tasks.
 
 Backend: FastAPI + SQLAlchemy  
